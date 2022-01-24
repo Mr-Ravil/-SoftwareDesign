@@ -1,6 +1,6 @@
 # Домашние задания по курсу Software Design
 
-## ДЗ 1. [LRUCache](HW1-LRUCache)
+## ДЗ 1. [LRUCache](Lab1-LRUCache)
 
 Цель: получить практический опыт применения динамических проверок в коде (assertions).
 
