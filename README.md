@@ -10,7 +10,7 @@
 +	использовать LinkedHashMap напрямую нельзя
 
 
-## Лабораторная 3. [Refactoring](Lab2-Refactoring)
+## Лабораторная 3. [Refactoring](Lab3-Refactoring)
 
 Цель: получить практический опыт применения техник рефакторинга.
 Скачайте приложение: https://github.com/akirakozov/software-design/tree/master/java/refactoring
