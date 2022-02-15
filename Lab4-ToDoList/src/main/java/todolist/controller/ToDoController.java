@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import todolist.dao.ToDoDao;
-import todolist.model.Product;
 import todolist.model.ToDoList;
 import todolist.model.ToDoTask;
 
