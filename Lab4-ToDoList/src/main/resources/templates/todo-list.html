@@ -1,0 +1,68 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+    <title th:text="${toDoList.getTitle()}"></title>
+</head>
+<body>
+
+<h2 th:text="${toDoList.getTitle()}"></h2>
+<form action="/">
+    <input type="submit" value="back">
+</form>
+<form method="POST" action="/delete-todo-list">
+    <input type="submit" value="delete ToDo list">
+    <input type="hidden" name="listId" th:value="${toDoList.getId()}">
+</form>
+
+<h3>Create a new task</h3>
+<form th:object="${newToDoTask}" method="POST" action="/add-todo-task">
+    <table>
+        <tr>
+            <td><label>Title:</label></td>
+            <td>
+                <label>
+                    <input type="text" th:field="*{title}"/>
+                </label>
+                <input type="hidden" name="listId" th:value="${toDoList.getId()}">
+            </td>
+        </tr>
+    </table>
+
+    <input type="submit" value="add">
+</form>
+
+<h3>Todo Tasks:</h3>
+<table>
+    <th:block th:each="toDoTask : ${toDoTasks}">
+        <tr th:unless="${toDoTask.isDone()}">
+            <td th:text="${toDoTask.getTitle()}"></td>
+            <td>
+                <form method="post" th:action="'/mark-todo-task'">
+                    <input type="submit" value="do">
+                    <input type="hidden" name="listId" th:value="${toDoList.getId()}">
+                    <input type="hidden" name="taskId" th:value="${toDoTask.getId()}">
+                    <input type="hidden" name="done" th:value="${!toDoTask.isDone()}">
+                </form>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+<h3>Completed Tasks:</h3>
+<table>
+    <th:block th:each="toDoTask : ${toDoTasks}">
+        <tr th:if="${toDoTask.isDone()}">
+            <td th:text="${toDoTask.getTitle()}"></td>
+            <td>
+                <form method="post" th:action="'/delete-todo-task'">
+                    <input type="submit" value="delete task">
+                    <input type="hidden" name="listId" th:value="${toDoList.getId()}">
+                    <input type="hidden" name="taskId" th:value="${toDoTask.getId()}">
+                </form>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+</body>
+</html>
