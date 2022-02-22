@@ -7,6 +7,12 @@ public class MatrixGraph extends Graph {
 
     public MatrixGraph(DrawingApi drawingApi, int size, Boolean[][] matrix) {
         super(drawingApi);
+
+        assert size == matrix.length;
+        for (int i = 0; i < size; i++) {
+            assert matrix[i].length == i + 1;
+        }
+
         this.size = size;
         this.matrix = matrix;
     }

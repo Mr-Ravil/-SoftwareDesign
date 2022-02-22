@@ -24,7 +24,7 @@ public class Main {
                 .map(line -> Arrays.stream(line.split("\\s+"))
                         .map(Integer::parseInt)
                         .collect(Collectors.toList()))
-                .map(list -> new Edge(list.get(0), list.get(1)))
+                .map(list -> new Edge(list.get(0) - 1, list.get(1) - 1))
                 .collect(Collectors.toList());
     }
 
@@ -42,33 +42,21 @@ public class Main {
         String graphType = args[1];
         String fileName = args[2];
 
-        DrawingApi drawingApi;
-        switch (drawingApiType) {
-            case "awt":
-                drawingApi = new AwtDrawingApi(DRAWING_AREA_WIDTH, DRAWING_AREA_HEIGHT);
-                break;
-            case "javafx":
-                drawingApi = new JavaFxDrawingApi(DRAWING_AREA_WIDTH, DRAWING_AREA_HEIGHT);
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown drawing api:" + drawingApiType);
-        }
+        DrawingApi drawingApi = switch (drawingApiType) {
+            case "awt" -> new AwtDrawingApi(DRAWING_AREA_WIDTH, DRAWING_AREA_HEIGHT);
+            case "javafx" -> new JavaFxDrawingApi(DRAWING_AREA_WIDTH, DRAWING_AREA_HEIGHT);
+            default -> throw new IllegalArgumentException("Unknown drawing api:" + drawingApiType);
+        };
 
 
         BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(fileName));
         int graphSize = Integer.parseInt(bufferedReader.readLine());
 
-        Graph graph;
-        switch (graphType) {
-            case "list":
-                graph = new ListGraph(drawingApi, graphSize, readEdges(bufferedReader));
-                break;
-            case "matrix":
-                graph = new MatrixGraph(drawingApi, graphSize, readMatrix(bufferedReader));
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown graph type:" + graphType);
-        }
+        Graph graph = switch (graphType) {
+            case "list" -> new ListGraph(drawingApi, graphSize, readEdges(bufferedReader));
+            case "matrix" -> new MatrixGraph(drawingApi, graphSize, readMatrix(bufferedReader));
+            default -> throw new IllegalArgumentException("Unknown graph type:" + graphType);
+        };
 
         graph.drawGraph();
     }

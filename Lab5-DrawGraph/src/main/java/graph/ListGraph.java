@@ -9,6 +9,11 @@ public class ListGraph extends Graph {
 
     public ListGraph(DrawingApi drawingApi, int size, List<Edge> edges) {
         super(drawingApi);
+
+        for (Edge edge : edges) {
+            assert edge.getFrom() < size && edge.getTo() < size;
+        }
+
         this.size = size;
         this.edges = edges;
     }
