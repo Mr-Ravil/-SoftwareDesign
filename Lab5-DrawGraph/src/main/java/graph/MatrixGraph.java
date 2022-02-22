@@ -5,10 +5,10 @@ import drawing.DrawingApi;
 public class MatrixGraph extends Graph {
     private final Boolean[][] matrix;
 
-    public MatrixGraph(DrawingApi drawingApi, Boolean[][] matrix) {
+    public MatrixGraph(DrawingApi drawingApi, int size, Boolean[][] matrix) {
         super(drawingApi);
+        this.size = size;
         this.matrix = matrix;
-        this.size = matrix.length;
     }
 
     protected void drawEdges() {

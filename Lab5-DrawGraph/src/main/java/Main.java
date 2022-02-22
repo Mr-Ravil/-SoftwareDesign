@@ -31,7 +31,7 @@ public class Main {
     private static Boolean[][] readMatrix(BufferedReader bufferedReader) {
         return bufferedReader.lines().map(String::trim).filter(line -> !line.isEmpty())
                 .map(line -> Arrays.stream(line.split("\\s+"))
-                .map(a -> Objects.equals(a, "1")).toArray(Boolean[]::new)).toArray(Boolean[][]::new);
+                        .map(a -> Objects.equals(a, "1")).toArray(Boolean[]::new)).toArray(Boolean[][]::new);
     }
 
     public static void main(String[] args) throws IOException {
@@ -56,14 +56,15 @@ public class Main {
 
 
         BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(fileName));
+        int graphSize = Integer.parseInt(bufferedReader.readLine());
 
         Graph graph;
         switch (graphType) {
             case "list":
-                graph = new ListGraph(drawingApi, readEdges(bufferedReader));
+                graph = new ListGraph(drawingApi, graphSize, readEdges(bufferedReader));
                 break;
             case "matrix":
-                graph = new MatrixGraph(drawingApi, readMatrix(bufferedReader));
+                graph = new MatrixGraph(drawingApi, graphSize, readMatrix(bufferedReader));
                 break;
             default:
                 throw new IllegalArgumentException("Unknown graph type:" + graphType);

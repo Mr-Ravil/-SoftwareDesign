@@ -7,10 +7,10 @@ import java.util.List;
 public class ListGraph extends Graph {
     protected final List<Edge> edges;
 
-    public ListGraph(DrawingApi drawingApi, List<Edge> edges) {
+    public ListGraph(DrawingApi drawingApi, int size, List<Edge> edges) {
         super(drawingApi);
+        this.size = size;
         this.edges = edges;
-        this.size=edges.size();
     }
 
     protected void drawEdges() {
