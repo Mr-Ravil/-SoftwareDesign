@@ -5,8 +5,8 @@ import drawing.Point2D;
 
 public abstract class Graph {
     protected int size;
-    private final double VERTEXES_RADIUS_RATIO = 0.05;
-    private final double CIRCLE_RADIUS_RATIO = 0.7;
+    private static final double VERTEXES_RADIUS_RATIO = 0.05;
+    private static final double CIRCLE_RADIUS_RATIO = 0.7;
 
     /**
      * Bridge to drawing api

@@ -8,8 +8,8 @@ import token.Token;
 import java.util.*;
 
 public class ParserVisitor implements TokenVisitor {
-    private final String MISSING_OPEN_BRACE_ERROR_MESSAGE = "Parse error: Missing open bracket";
-    private final String MISSING_CLOSE_BRACE_ERROR_MESSAGE = "Parse error: Missing close bracket";
+    private static final String MISSING_OPEN_BRACE_ERROR_MESSAGE = "Parse error: Missing open bracket";
+    private static final String MISSING_CLOSE_BRACE_ERROR_MESSAGE = "Parse error: Missing close bracket";
 
     private List<Token> rpn;
     private Stack<Token> stack;

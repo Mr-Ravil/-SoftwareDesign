@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tokenizer {
-    private final int EOF = -1;
+    private static final int EOF = -1;
 
     private final InputStream inputStream;
     private final List<Token> tokens;

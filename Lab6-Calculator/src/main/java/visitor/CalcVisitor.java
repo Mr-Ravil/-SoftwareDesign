@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Stack;
 
 public class CalcVisitor implements TokenVisitor {
-    private final String ODD_TOKEN_ERROR_MESSAGE = "Reverse Polish notation does not support this token: ";
-    private final String CALCULATION_ERROR_MESSAGE = "Calculation error";
+    private static final String ODD_TOKEN_ERROR_MESSAGE = "Reverse Polish notation does not support this token: ";
+    private static final String CALCULATION_ERROR_MESSAGE = "Calculation error";
 
     private Stack<Long> stack;
 
