@@ -4,16 +4,19 @@ import user.account.model.Portfolio;
 import user.account.model.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserDao {
 
     int addUser(User user);
 
-    void addBalance(int id, long balance);
+    void changeBalance(int userId, long balance);
 
-    Optional<User> getUser(int id);
+    long getBalance(int userId);
 
-    List<Portfolio> getPortfoliosByUserId(int id);
+    User getUser(int id);
+
+    void updatePortfolio(Portfolio portfolio);
+
+    List<Portfolio> getPortfoliosByUserId(int userId);
 
 }

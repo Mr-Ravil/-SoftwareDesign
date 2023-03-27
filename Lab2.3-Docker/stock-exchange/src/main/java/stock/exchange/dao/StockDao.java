@@ -2,16 +2,14 @@ package stock.exchange.dao;
 
 import stock.exchange.model.Stock;
 
-import java.util.Optional;
-
 public interface StockDao {
 
     int addStock(Stock stock);
 
-    void addAmount(int id, long amount);
+    void changeAmount(int stockId, long amount);
 
-    void changePrice(int id, long price);
+    void setPrice(int stockId, long newPrice);
 
-    Optional<Stock> getStock(int id);
+    Stock getStock(int id);
 
 }

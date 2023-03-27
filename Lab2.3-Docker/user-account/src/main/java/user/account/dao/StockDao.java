@@ -6,16 +6,13 @@ import user.account.model.Portfolio;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
-import java.util.Optional;
 
 public interface StockDao {
 
-    long getPrice(int stockId);
+    long getPrice(long stockId);
 
-    long getTotalBalance(List<Portfolio> portfolios);
+    long buy(int stockId, long amount) throws IOException, URISyntaxException, InterruptedException;
 
-    void buy(int userId, int stockId, long amount);
-
-    void sell(int userId, int stockId, long amount);
+    long sell(int stockId, long amount) throws IOException, URISyntaxException, InterruptedException;
 
 }

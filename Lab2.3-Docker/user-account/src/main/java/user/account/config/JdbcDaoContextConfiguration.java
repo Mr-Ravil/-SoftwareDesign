@@ -7,10 +7,10 @@ import user.account.dao.UserJdbcDao;
 
 import javax.sql.DataSource;
 
-@Configuration
+//@Configuration
 public class JdbcDaoContextConfiguration {
     @Bean
-    public UserJdbcDao stockJdbcDao(DataSource dataSource) {
+    public UserJdbcDao userJdbcDao(DataSource dataSource) {
         return new UserJdbcDao(dataSource);
     }
 

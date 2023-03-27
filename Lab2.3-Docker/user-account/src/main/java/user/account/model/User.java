@@ -1,26 +1,37 @@
 package user.account.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class User {
-    private long id;
+    private int id;
     private String name;
     private long balance;
-    private List<Portfolio> portfolios;
+    private Map<Integer, Portfolio> portfolios;
 
-    public User() {}
-
-    public User(long id, String companyName, long price, long amount) {
-        this.id = id;
-        this.name = companyName;
-        this.balance = price;
+    public User() {
     }
 
-    public long getId() {
+    public User(String companyName, long balance) {
+        this.name = companyName;
+        this.balance = balance;
+        this.portfolios = new HashMap<>();
+    }
+
+    public User(int id, String name, long balance) {
+        this.id = id;
+        this.name = name;
+        this.balance = balance;
+        this.portfolios = new HashMap<>();
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -40,14 +51,31 @@ public class User {
         this.balance = balance;
     }
 
-
-    public List<Portfolio> getPortfolios() {
+    public Map<Integer, Portfolio> getPortfolios() {
         return portfolios;
     }
 
-    public void setPortfolios(List<Portfolio> portfolios) {
+    public void setPortfolios(Map<Integer, Portfolio>  portfolios) {
         this.portfolios = portfolios;
     }
 
+    public void changeBalance(long balance) {
+        if (this.balance + balance < 0) {
+            throw new AssertionError("Negative balance");
+        }
+        this.balance += balance;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id && balance == user.balance && Objects.equals(name, user.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, balance);
+    }
 }

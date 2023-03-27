@@ -7,7 +7,7 @@ import stock.exchange.dao.StockJdbcDao;
 
 import javax.sql.DataSource;
 
-@Configuration
+//@Configuration
 public class JdbcDaoContextConfiguration {
     @Bean
     public StockJdbcDao stockJdbcDao(DataSource dataSource) {

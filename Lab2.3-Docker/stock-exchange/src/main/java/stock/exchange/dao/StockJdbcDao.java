@@ -13,7 +13,6 @@ public class StockJdbcDao extends JdbcDaoSupport implements StockDao {
         setDataSource(dataSource);
     }
 
-
     @Override
     public int addStock(Stock stock) {
         String sql = "INSERT INTO Stock (companyName, price, amount) VALUES (?, ?, ?)";
@@ -22,23 +21,33 @@ public class StockJdbcDao extends JdbcDaoSupport implements StockDao {
     }
 
     @Override
-    public void addAmount(int id, long amount) {
-        String sql = "UPDATE Stock SET amount = amount + ? WHERE id = ?";
+    public void changeAmount(int stockId, long amount) {
+        String sql = "UPDATE Stock SET amount = amount + ? WHERE id = ? and amount + ? >= 0";
         assert getJdbcTemplate() != null;
-        getJdbcTemplate().update(sql, amount, id);
+        if (getJdbcTemplate().update(sql, amount, stockId, amount) == 0) {
+            throw new AssertionError("Not enough stocks");
+        }
     }
 
     @Override
-    public void changePrice(int id, long price) {
+    public void setPrice(int stockId, long newPrice) {
         String sql = "UPDATE Stock SET price = ? WHERE id = ?";
         assert getJdbcTemplate() != null;
-        getJdbcTemplate().update(sql, price, id);
+        getJdbcTemplate().update(sql, newPrice, stockId);
     }
 
     @Override
-    public Optional<Stock> getStock(int id) {
+    public Stock getStock(int id) {
         String sql = "SELECT * FROM Stock WHERE id = ?";
         assert getJdbcTemplate() != null;
-        return getJdbcTemplate().query(sql, new BeanPropertyRowMapper(Stock.class), id).stream().findFirst();
+
+        Optional<Stock> optionalStock =
+                getJdbcTemplate().query(sql, new BeanPropertyRowMapper(Stock.class), id).stream().findFirst();
+
+        if (optionalStock.isEmpty()) {
+            throw new AssertionError("There are no such stocks");
+        }
+
+        return optionalStock.get();
     }
 }
