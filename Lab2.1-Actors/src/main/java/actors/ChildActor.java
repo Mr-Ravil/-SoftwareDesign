@@ -2,8 +2,8 @@ package actors;
 
 import akka.actor.UntypedActor;
 import com.google.gson.Gson;
-import gsons.Request;
-import gsons.Response;
+import model.Request;
+import model.Response;
 
 import java.net.URI;
 import java.net.URLEncoder;

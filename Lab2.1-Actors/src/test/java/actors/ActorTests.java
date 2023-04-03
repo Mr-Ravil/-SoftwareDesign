@@ -4,8 +4,8 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.pattern.PatternsCS;
-import gsons.Request;
-import gsons.Response;
+import model.Request;
+import model.Response;
 import stub.StubServer;
 import org.junit.Test;
 

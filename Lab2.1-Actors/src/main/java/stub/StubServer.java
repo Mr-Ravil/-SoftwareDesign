@@ -1,7 +1,7 @@
 package stub;
 
 import com.google.gson.Gson;
-import gsons.Response;
+import model.Response;
 import org.mockserver.integration.ClientAndServer;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;

@@ -4,8 +4,8 @@ import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.actor.ReceiveTimeout;
 import akka.actor.UntypedActor;
-import gsons.Request;
-import gsons.Response;
+import model.Request;
+import model.Response;
 import scala.concurrent.duration.Duration;
 
 import java.util.HashMap;

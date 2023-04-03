@@ -1,4 +1,4 @@
-package gsons;
+package model;
 
 public class Request {
     public int top;

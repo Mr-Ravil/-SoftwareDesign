@@ -1,7 +1,7 @@
 package stub;
 
 import com.google.gson.Gson;
-import gsons.Response;
+import model.Response;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
