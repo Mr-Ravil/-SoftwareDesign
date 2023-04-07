@@ -50,7 +50,8 @@ public class EventStorage {
     }
 
     private Account getRawAccount(String phoneNumber) throws NoSuchAccountException {
-        Optional<AccountCreationEvent> optionalAccountCreationEvent = eventDao.getAccountCreationEventByPhoneNumber(phoneNumber);
+        Optional<AccountCreationEvent> optionalAccountCreationEvent =
+                eventDao.getAccountCreationEventByPhoneNumber(phoneNumber);
         return getRawAccount(optionalAccountCreationEvent);
     }
 
@@ -59,7 +60,8 @@ public class EventStorage {
         return getRawAccount(optionalAccountCreationEvent);
     }
 
-    private Account getRawAccount(Optional<AccountCreationEvent> optionalAccountCreationEvent) throws NoSuchAccountException {
+    private Account getRawAccount(Optional<AccountCreationEvent> optionalAccountCreationEvent)
+            throws NoSuchAccountException {
         if (optionalAccountCreationEvent.isEmpty()) {
             throw new NoSuchAccountException();
         }
@@ -69,7 +71,8 @@ public class EventStorage {
         return new Account().applyAccountCreationEvent(accountCreationEvent);
     }
 
-    public void renewalMembership(String phoneNumber, LocalDateTime newMembershipEnd) throws NoSuchAccountException, MembershipNotEndedException {
+    public void renewalMembership(String phoneNumber, LocalDateTime newMembershipEnd)
+            throws NoSuchAccountException, MembershipNotEndedException {
         Account account = getRawAccount(phoneNumber);
 
         List<MembershipRenewalEvent> membershipRenewalEvents = eventDao.getMembershipRenewalEvents(account.getId());

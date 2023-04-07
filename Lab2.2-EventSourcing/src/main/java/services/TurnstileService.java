@@ -47,7 +47,8 @@ public class TurnstileService extends Service {
         EntryEvent lastEntryEvent = eventStorage.getLastEntryEvent(accountId);
         ExitEvent lastExitEvent = eventStorage.getLastExitEvent(accountId);
 
-        if (lastEntryEvent == null || (lastExitEvent != null && lastEntryEvent.getEntryTime().isBefore(lastExitEvent.getExitTime()))) {
+        if (lastEntryEvent == null || (lastExitEvent != null
+                && lastEntryEvent.getEntryTime().isBefore(lastExitEvent.getExitTime()))) {
             throw new UserNotEnteredException();
         }
 

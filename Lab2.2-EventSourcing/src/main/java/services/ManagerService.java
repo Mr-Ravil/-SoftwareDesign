@@ -25,7 +25,8 @@ public class ManagerService extends Service {
         return eventStorage.createAccount(userName, phoneNumber, LocalDateTime.now(clock));
     }
 
-    public void renewalMembership(String phoneNumber, LocalDateTime newMembershipEnd) throws NoSuchAccountException, MembershipException {
+    public void renewalMembership(String phoneNumber, LocalDateTime newMembershipEnd)
+            throws NoSuchAccountException, MembershipException {
         if (LocalDateTime.now(clock).isAfter(newMembershipEnd)) {
             throw new NewMembershipEndIsOutdatedException();
         }

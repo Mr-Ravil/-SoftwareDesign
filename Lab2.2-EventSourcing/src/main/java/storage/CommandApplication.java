@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class CommandApplication {
-    private StatisticDao statisticDao;
+    private final StatisticDao statisticDao;
 
     public CommandApplication(StatisticDao statisticDao) {
         this.statisticDao = statisticDao;

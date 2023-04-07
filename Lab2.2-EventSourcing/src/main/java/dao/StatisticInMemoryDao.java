@@ -42,8 +42,6 @@ public class StatisticInMemoryDao implements StatisticDao {
                 dailyStat.incrementDuration(duration);
             }
         } else {
-//            SortedMap<LocalDate, RawStats> visitedDays =
-//                    dailyStats.subMap(entryTime.toLocalDate().plusDays(1), event.getExitTime().toLocalDate());
 
             for (LocalDate localDate = entryTime.toLocalDate().plusDays(1);
                  localDate.isBefore(event.getExitTime().toLocalDate());
